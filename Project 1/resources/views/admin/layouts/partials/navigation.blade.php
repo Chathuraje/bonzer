@@ -14,14 +14,22 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route('dashboard') }}">
+              <a class="nav-link" href="/dashboard">
                 <i class="text-primary fas fa-tachometer-alt"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
           </ul>
+
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/customer">
+                <i class="text-primary fas fa-users"></i>
+                <span class="nav-link-text">Customers</span>
+              </a>
+            </li>
+          </ul>
       
-          <!-- Navigation -->
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="/inquiry">
@@ -31,32 +39,20 @@
             </li>
           </ul>
 
-          <!-- Navigation -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('dashboard') }}">
+              <a class="nav-link" href="/itinerary">
                 <i class="text-primary fas fa-file-invoice"></i>
                 <span class="nav-link-text">Itinerary</span>
               </a>
             </li>
           </ul>
 
-          <!-- Navigation -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('dashboard') }}">
+              <a class="nav-link" href="/quotation">
                 <i class="text-primary fas fa-business-time"></i>
                 <span class="nav-link-text">Quotation</span>
-              </a>
-            </li>
-          </ul>
-
-          <!-- Navigation -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/customer">
-                <i class="text-primary fas fa-users"></i>
-                <span class="nav-link-text">Customers</span>
               </a>
             </li>
           </ul>

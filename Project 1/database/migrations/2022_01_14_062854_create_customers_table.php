@@ -19,19 +19,19 @@ class CreateCustomersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('gender');
-            $table->string('birthDate')->nullable;
+            $table->string('birthDate')->nullable();
             $table->string('branch');
             $table->string('mobileNumber');
             $table->string('country');
             $table->string('city');
-            $table->string('address')->nullable;
-            $table->string('postalCode')->nullable;
+            $table->string('address')->nullable();
+            $table->string('postalCode')->nullable();
             $table->string('documentType');
             $table->string('docNumber');
             $table->string('expireDate');
             $table->string('nationalioty');
             $table->string('isuuingCountry');
-            $table->string('others')->nullable;
+            $table->string('others')->nullable();
             $table->timestamps();
         });
     }

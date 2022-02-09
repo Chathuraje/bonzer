@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <!--<li class="breadcrumb-item"><a href="#">Dashboards</a></li>
               <li class="breadcrumb-item active" aria-current="page">Default</li>-->
             </ol>
@@ -28,8 +28,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Customers</h5>
+                  <span class="h2 font-weight-bold mb-0">{{$Customer}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -37,10 +37,12 @@
                   </div>
                 </div>
               </div>
+              <!--
               <p class="mt-3 mb-0 text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                 <span class="text-nowrap">Since last month</span>
               </p>
+            -->
             </div>
           </div>
         </div>
@@ -50,8 +52,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                  <span class="h2 font-weight-bold mb-0">2,356</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Inquiry</h5>
+                  <span class="h2 font-weight-bold mb-0">{{$inquiry}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -59,10 +61,11 @@
                   </div>
                 </div>
               </div>
+              <!--
               <p class="mt-3 mb-0 text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                 <span class="text-nowrap">Since last month</span>
-              </p>
+              </p>-->
             </div>
           </div>
         </div>
@@ -72,8 +75,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                  <span class="h2 font-weight-bold mb-0">924</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Itinerary</h5>
+                  <span class="h2 font-weight-bold mb-0">{{$Itinerary}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -81,10 +84,12 @@
                   </div>
                 </div>
               </div>
+              <!--
               <p class="mt-3 mb-0 text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                 <span class="text-nowrap">Since last month</span>
               </p>
+            -->
             </div>
           </div>
         </div>
@@ -94,8 +99,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                  <span class="h2 font-weight-bold mb-0">49,65%</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Quotations</h5>
+                  <span class="h2 font-weight-bold mb-0">{{$Quotation}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -103,10 +108,11 @@
                   </div>
                 </div>
               </div>
+              <!--
               <p class="mt-3 mb-0 text-sm">
                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                 <span class="text-nowrap">Since last month</span>
-              </p>
+              </p>-->
             </div>
           </div>
         </div>
@@ -119,7 +125,7 @@
 
 
 @section('content')
-    <!-- Page content -->
+    <!-- Page content 
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col-xl-8">
@@ -149,9 +155,7 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
-                <!-- Chart wrapper -->
                 <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -168,7 +172,6 @@
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
                 <canvas id="chart-bars" class="chart-canvas"></canvas>
               </div>
@@ -177,5 +180,5 @@
         </div>
       </div>
     </div>
-      
+  -->
 @endsection

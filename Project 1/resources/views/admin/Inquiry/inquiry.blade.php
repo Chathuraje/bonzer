@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="inquiry">Inquiry</a></li>
               <!--<li class="breadcrumb-item active" aria-current="page">Default</li>-->
             </ol>
@@ -40,10 +40,7 @@
                   <h3 class="mb-0 text-white">All Inquiry</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Filters</a>
                   <a href="inquiry/create" class="btn btn-sm btn-primary text-white">Add a new Inquiry</a>
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Export</a>
-                  <a href="" class="btn btn-sm btn-primary text-white">Import</a>
                 </div>
               </div>
             </div>
@@ -89,18 +86,11 @@
                           </button>
                           <div class="dropdown-menu item-color item-color" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item item-color" href="/inquiry/{{$inquiry->id}}/edit">Edit Inquiry</a>
-                            <a class="dropdown-item item-color" href="#">Edit Quatation</a>
-                            <a class="dropdown-item item-color" href="#">Delete Inquiry</a>
                           </div>
                         </div>
                       </td>
                     </tr>
                   @endforeach
-
-                  
-
-                  
-                  
                 </tbody>
               </table>
             </div>

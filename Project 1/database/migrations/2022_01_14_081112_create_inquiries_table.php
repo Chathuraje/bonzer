@@ -32,7 +32,7 @@ class CreateInquiriesTable extends Migration
             $table->string('infants');
             $table->string('budget');
             $table->string('status');
-            $table->string('other')->nullable;
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }

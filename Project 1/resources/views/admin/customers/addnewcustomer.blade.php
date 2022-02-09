@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="/customer">Customer</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="/customer/create"> Add a New Customer</a></li>
             </ol>
@@ -40,7 +40,7 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <a href="#!" class="btn btn-sm btn-primary">Clear</a>
+                        <a href="" class="btn btn-sm btn-primary">Clear</a>
                       </div>
                     </div>
                   </div>
@@ -73,11 +73,16 @@
                           </div>
                         </div>
 
+                        <?php 
+                              $min = new DateTime();
+                              $min->modify("-6570 days");
+                            ?>
+
                         <div class="row">
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="input-bday">BirthDate</label>
-                              <input name="birthDate" type="date" id="input-bday" class="form-control" placeholder="Birth Date">
+                              <input name="birthDate" type="date" id="input-bday" class="form-control" placeholder="Birth Date" value="<?php echo date("Y-m-d");?>" max=<?=$min->format("Y-m-d")?>  >
                             </div>
                           </div>
 
@@ -168,10 +173,16 @@
                                 <input name="docNumber" type="text" id="input-docNumber" class="form-control" placeholder="Document Number" required>
                               </div>
                             </div>
+
+                            <?php 
+                              $min = new DateTime();
+                              $min->modify("100 days");
+                            ?>
+                            
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="input-expireDate">Expire Date</label>
-                              <input name="expireDate" type="date" id="input-expireDate" class="form-control" placeholder="Expire Date" required>
+                              <input name="expireDate" type="date" id="input-expireDate" class="form-control" placeholder="Expire Date" value="<?php echo date("Y-m-d");?>" min=<?=$min->format("Y-m-d")?>  required>
                             </div>
                           </div>
                           

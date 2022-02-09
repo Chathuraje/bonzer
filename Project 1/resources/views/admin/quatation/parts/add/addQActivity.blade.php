@@ -1,7 +1,7 @@
-<form method="POST" action="{{ route('itinerary.store') }}">
+<form method="POST" action="{{ route('quotation.store') }}">
     @csrf <!-- {{ csrf_field() }} --> 
 
-  <input type="hidden" name="itinerarieId" id="input-id" class="form-control" value="<?php echo $_GET['id']; ?>">
+  <input type="hidden" name="quotationId" id="input-id" class="form-control" value="<?php echo $_GET['id']; ?>">
     <!-- Address -->
     <h6 class="heading-small text-muted mb-4">Add Activity</h6>
     <div class="pl-lg-4">

@@ -11,13 +11,13 @@
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="/itinerary">Itinerary</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href="/itinerary/create"> Add a New Itinerary</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/itinerary/{{ $itinerary->id }}/edit">Edit Itinerary</a></li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
 
-          <h6 class="h2 text-white d-inline-block mb-0">Add a New Itinerary</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">Edit Itinerary</h6>
         </div>
       </div>
       <!-- Card stats -->
@@ -40,15 +40,16 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <a href="" class="btn btn-sm btn-primary">Clear</a>
+                        <a href="#!" class="btn btn-sm btn-primary">Clear</a>
                       </div>
                     </div>
                   </div>
                   
-                  <form method="POST" action="{{ route('itinerary.store') }}">
+                  <form method="POST" action="{{ route('itinerary.update', $itinerary->id) }}">
                     @csrf <!-- {{ csrf_field() }} --> 
+                    @method('PUT')
 
-                  <input type="hidden" name="customerId" id="input-id" class="form-control" value="0">
+                  <input type="hidden" name="customerId" id="input-id" class="form-control" value="{{$itinerary->customerId}}">
                       @if (count($errors) > 0)
                           <div class = "alert alert-danger">
                             <ul>
@@ -65,33 +66,21 @@
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="inputcustomername">Customer * (e.g. Firstname Lastname)</label>
-                              <select class="form-control" name="customerName" id="inputcustomername" placeholder="Select Value" required>
-                                 <option value="Select Customer Name">Select Customer Name</option>
-                                  @foreach ( $customers as $customer )
-                                    <option 
-                                      dataEmail = "{{$customer->email}}" 
-                                      dataContactNumber = "{{$customer->mobileNumber}}"
-                                      dataId = "{{$customer->id}}" 
-                                      title="{{  $customer->email }}" 
-                                      value="{{  $customer->firstName . " ". $customer->lastName  }}">
-
-                                        {{$customer->firstName . " ". $customer->lastName}}
-
-                                    </option>
-                                  @endforeach
+                              <select class="form-control" name="customerName" id="inputcustomername" placeholder="Select Value" required readonly>
+                                 <option value="Select Customer Name">{{ $itinerary->firstName . " " . $itinerary->lastName }}</option>
                               </select>
                             </div>
                           </div>
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="input-email">Email *</label>
-                              <input type="email" name="email" id="input-email" class="form-control" required readonly>
+                              <input type="email" name="email" id="input-email" class="form-control" value="{{ $itinerary->email }}" required readonly>
                             </div>
                           </div>
                           <div class="col-lg-4">
                             <div class="form-group">
                               <label class="form-control-label" for="input-contact-no">Contact Phone *</label>
-                              <input type="text" name="contactNo" id="input-contact-no" class="form-control" required readonly>
+                              <input type="text" name="contactNo" value="{{$itinerary->mobileNumber}}" id="input-contact-no" class="form-control" required readonly>
                             </div>
                           </div>
                         </div>
@@ -104,7 +93,7 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                   <label class="form-control-label" for="input-itinerary-title">Itinerary Title / Details*</label>
-                                  <input type="text" id="input-itinerary-title" class="form-control" name="itineraryTitle" placeholder="Itinerary Title / Details">
+                                  <input type="text" id="input-itinerary-title" class="form-control" value="{{$itinerary->title}}" name="itineraryTitle" placeholder="Itinerary Title / Details">
                                 </div>
                               </div>
                             
@@ -112,7 +101,7 @@
                           <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-from-Date">From Date</label>
-                                <input onChange="getDate(1);" name="fromDate" type="date" id="input-from-Date" class="form-control" placeholder="From Date" >
+                                <input onChange="getDate(1);" name="fromDate" type="date" value="{{$itinerary->fromDate}}" id="input-from-Date" class="form-control" placeholder="From Date" >
                               </div>
                           </div>
 
@@ -126,19 +115,18 @@
                           <div class="col-lg-2">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-to-Date">To Date</label>
-                                <input onChange="getDate();" name="toDate" type="date" id="input-to-Date" class="form-control" placeholder="To Date">
+                                <input onChange="getDate();" name="toDate" type="date" id="input-to-Date" value="{{$itinerary->toDate}}" class="form-control" placeholder="To Date">
                               </div>
                           </div>
 
                           <div class="col-lg-4">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-duration">Duration (Nights)*</label>
-                                <input type="text" id="input-duration" name="duration" class="form-control" placeholder="0" readonly>
+                                <input type="text" id="input-duration" name="duration" value="{{$itinerary->duration}}" class="form-control" placeholder="0" readonly>
                               </div>
                         </div>
 
                         <script>
-                          getDate(0);
 
                           function getDate(data) {
                               var fromDate = document.getElementById("input-from-Date").value;
@@ -186,7 +174,7 @@
 
                               if(data){
                                 document.getElementById("input-to-Date").value = "";
-                              document.getElementById("input-duration").value = "0";
+                                document.getElementById("input-duration").value = "0";
                               }
 
                               
@@ -208,7 +196,7 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <button type="submit" class="btn btn-md btn-primary" name="submitValue" value="Create">Add Itinerary</button>
+                        <button type="submit" class="btn btn-md btn-primary" name="submitValue" value="Update">Update Itinerary</button>
                       </div>
                     </div>
                   </div>
@@ -221,22 +209,6 @@
       </div>
     </div>
 
-    <script>
-      $(document).ready(function() {
-        $('#inputcustomername').select2();
-      });
-
-      $(function() { 
-        $("#inputcustomername").change(function(){ 
-            var element = $(this).find('option:selected'); 
-            var dataEmail = element.attr("dataEmail"); 
-            var dataContactNumber = element.attr("dataContactNumber"); 
-            var dataId = element.attr("dataId"); 
-            $('#input-email').val(dataEmail); 
-            $('#input-contact-no').val(dataContactNumber); 
-            $('#input-id').val(dataId); 
-        });
- }); 
-    </script>
+   
       
 @endsection

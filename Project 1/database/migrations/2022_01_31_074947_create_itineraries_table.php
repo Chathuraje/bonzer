@@ -14,7 +14,12 @@ class CreateItinerariesTable extends Migration
     public function up()
     {
         Schema::create('itineraries', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
+            $table->string('customerId')->nullable();
+            $table->string('title')->nullable();
+            $table->string('fromDate')->nullable();
+            $table->string('toDate')->nullable();
+            $table->string('duration')->nullable();
             $table->timestamps();
         });
     }

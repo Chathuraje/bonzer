@@ -9,21 +9,18 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item"><a href="{{ route('quotation') }}">Quatation</a></li>
-              <!--<li class="breadcrumb-item active" aria-current="page">Default</li>-->
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="{{ route('inquiry') }}">Inquiry</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('importinquiry') }}">Import Inquiry</a></li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
 
-          <h6 class="h2 text-white d-inline-block mb-0">Quatation</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">Import Inquiry</h6>
         </div>
       </div>
       <!-- Card stats -->
-      <div class="row">
-       
-      </div>
     </div>
   </div>
 </div>
@@ -38,29 +35,33 @@
         <div class="col-xl-12">
           <div class="card bg-default">
             <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0 text-white">All Quatation</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Filters</a>
-                  <a href="{{ route('addnewquotation') }}" class="btn btn-sm btn-primary text-white">Add a new Quatation</a>
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Export</a>
-                  <a href="{{ route('importquotation') }}" class="btn btn-sm btn-primary text-white">Import Quatation</a>
-                </div>
-              </div>
+                <form>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input fileImport" id="customFileLang" lang="en">
+                                <label class="custom-file-label" for="customFileLang">Select Itinerary XLSX file</label>
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-md btn-primary">Import Itinerary</button>
+                            <button type="submit" class="btn btn-md btn-primary">Download Template</button>
+                            <a href=""><i class="fas fa-info-circle"></i></a>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-dark">
+               <!-- Projects table -->
+               <table class="table align-items-center table-dark">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col" class="sort" data-sort="name">Quatation Name</th>
+                    <th scope="col" class="sort" data-sort="name">Itinerary Name</th>
+                    <th scope="col" class="sort" data-sort="name">Start Date</th>
+                    <th scope="col" class="sort" data-sort="name">End Date</th>
+                    <th scope="col" class="sort" data-sort="name">No of Days</th>
                     <th scope="col" class="sort" data-sort="name">Customer Name</th>
                     <th scope="col" class="sort" data-sort="name">Customer Email</th>
-                    <th scope="col" class="sort" data-sort="name">Contact No</th>
-                    <th scope="col" class="sort" data-sort="name">Created Date</th>
-                    <th scope="col" class="sort" data-sort="name">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -75,14 +76,13 @@
                       2021-12-05
                     </td>
                     <td>
+                      5 Days
+                    </td>
+                    <td>
                       Chathura Ekanayake
                     </td>
                     <td>
                       chathuraje05@gmail.com
-                    </td>
-                    <td>
-                     <a href=""> <i class="fas fa-trash-alt"></i></a>	&nbsp;
-                     <a href="{{ route('quotationdetails') }}"> <i class="fas fa-eye"></i></a>
                     </td>
                   </tr>
 
@@ -97,14 +97,13 @@
                       2021-12-05
                     </td>
                     <td>
+                      5 Days
+                    </td>
+                    <td>
                       Chathura Ekanayake
                     </td>
                     <td>
                       chathuraje05@gmail.com
-                    </td>
-                    <td>
-                     <a href=""> <i class="fas fa-trash-alt"></i></a>	&nbsp;
-                     <a href=""> <i class="fas fa-eye"></i></a>
                     </td>
                   </tr>
 
@@ -119,14 +118,13 @@
                       2021-12-05
                     </td>
                     <td>
+                      5 Days
+                    </td>
+                    <td>
                       Chathura Ekanayake
                     </td>
                     <td>
                       chathuraje05@gmail.com
-                    </td>
-                    <td>
-                     <a href=""> <i class="fas fa-trash-alt"></i></a>	&nbsp;
-                     <a href=""> <i class="fas fa-eye"></i></a>
                     </td>
                   </tr>
 

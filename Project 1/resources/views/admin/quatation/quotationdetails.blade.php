@@ -10,14 +10,14 @@
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
               <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item"><a href="/itinerary">Itinerary</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href="/itinerary/create">Itinerary Details</a></li>
+              <li class="breadcrumb-item"><a href="/itinerary">Quotations</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/itinerary/create">Quotations Details</a></li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
 
-          <h6 class="h2 text-white d-inline-block mb-0">Itinerary Details</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">Quotations Details</h6>
         </div>
       </div>
       <!-- Card stats -->
@@ -38,8 +38,7 @@
                   <div class="card-header">
                     <div class="row align-items-center">
                       <div class="col-8">
-                            <h4 class="h2 d-inline-block mb-0">Itinerary for <b>{{ $itineraries->firstName . " " . $itineraries->lastName}} </b> | {{$itineraries->title}}</h4>
-                            <h6 class="h2 d-inline-block mb-0">{{$itineraries->toDate . " - " . $itineraries->fromDate}}</h6>
+                            <h4 class="h2 d-inline-block mb-0">Quotations for <b>{{ $quotations->firstName . " " . $quotations->lastName}} </b> | {{$quotations->title}}</h4>
                         </div>
                       <div class="col-4 text-right">
                         <a href="#!" class="btn btn-sm btn-primary">Delete</a>
@@ -60,30 +59,30 @@
                   <script>
                       $(document).ready(function(){
                         $("#btnHotel").click(function(){
-                            $("#main-it").load("../../addHotel?id={{$itineraries->id}}");
+                            $("#main-it").load("../../addQHotel?id={{$quotations->id}}");
                         });
 
                         $("#btnFlight").click(function(){
-                            $("#main-it").load("../../addFlight?id={{$itineraries->id}}");
+                            $("#main-it").load("../../addQFlight?id={{$quotations->id}}");
                         });
 
                         $("#btnCustom").click(function(){
-                            $("#main-it").load("../../addCustomItem?id={{$itineraries->id}}");
+                            $("#main-it").load("../../addQCustomItem?id={{$quotations->id}}");
                         });
 
                         $("#btnActivities").click(function(){
-                            $("#main-it").load("../../addActivity?id={{$itineraries->id}}");
+                            $("#main-it").load("../../addQActivity?id={{$quotations->id}}");
                         });
 
                         $("#btnTransfer").click(function(){
-                            $("#main-it").load("../../addTransfer?id={{$itineraries->id}}");
+                            $("#main-it").load("../../addQTransfer?id={{$quotations->id}}");
                         });
                     });
 
                     </script>
                   
                   <div class="card-body">
-                    <h6 class="heading-small text-muted mb-4 text-center">Add Items to Itinerary</h6>
+                    <h6 class="heading-small text-muted mb-4 text-center">Add Items to quotations</h6>
                     <div class="pl-lg-4">
                         <div class="row text-center">
                             <div class="col-lg-3">
@@ -158,7 +157,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h6 class="h2 d-inline-block mb-0">Itinerary Details</h6>
+                                    <h6 class="h2 d-inline-block mb-0">quotations Details</h6>
                                 </div>
                                 <div class="col-4 text-right">
                                 <a href="#!" class="btn btn-sm btn-primary">Delete</a>
@@ -167,130 +166,110 @@
                         </div>
                 
                         <div class="card-body">
-                            @if($itineraryDetails->isEmpty())
-                                <h6 class="heading-small text-muted mb-4 text-center">Add Items to Itinerary</h6>
+                            @if($quotationsDetails->isEmpty())
+                                <h6 class="heading-small text-muted mb-4 text-center">Add Items to quotations</h6>
                             @endif
 
                             <div class="pl-lg-4">
-                                <?php 
-                                    $date = new DateTime($itineraries->fromDate);
-                                    $dateString = $date->format('Y-m-d');
-                                ?>
-                                @for ($days = 1; $days <= $itineraries->duration; $days++)
-                                    <div class="card card-frame">
+                                <div class="card card-frame red">
                                         <div class="card-body">
-                                            <span class="text-gradient text-primary text-uppercase font-weight-bold my-2">
-                                                Day {{$days}} |  {{$dateString}}
-                                            </span>
-                                                <?php
-                                                    $date = new DateTime($dateString);
-                                                    $date->modify('+1 day');
-                                                    $dateString = $date->format('Y-m-d');
-                                                ?>
-                                        </div>
-                                     </div>
-
-                                     <div class="card card-frame red">
-                                        <div class="card-body">
-                                            @foreach ($itineraryDetails as $itineraryData)
-                                                @if ($itineraryData->itinerarieDay == $days)
-                                                    @if($itineraryData->itinerarieTypeId == "1") <!-- Hotel -->
+                                            @foreach ($quotationsDetails as $quotationData)
+                                                    @if($quotationData->quotationTypeId == "1") <!-- Hotel -->
                                                     
                                                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                                         <span class="alert-icon"><i class="fa fa-hotel"></i></span>
-                                                        <span class="alert-text"><strong>Hotel Name & Address: </strong> {{$itineraryData->hotelName}} , {{$itineraryData->hotelAddress}}</span>
+                                                        <span class="alert-text"><strong>Hotel Name & Address: </strong> {{$quotationData->hotelName}} , {{$quotationData->hotelAddress}}</span>
                                                             <br/>
                                                             
                                                         <span class="alert-icon"><i class="far fa-moon"></i></span>
-                                                        <span class="alert-text"><strong>Stay In: </strong> {{$itineraryData->hotelNoOfNights}} Night(s)</span>
+                                                        <span class="alert-text"><strong>Stay In: </strong> {{$quotationData->hotelNoOfNights}} Night(s)</span>
                                                             |
-                                                        <span class="alert-text"><strong>Hotel Rooms: </strong> {{$itineraryData->hotelRooms}}</span>
+                                                        <span class="alert-text"><strong>Hotel Rooms: </strong> {{$quotationData->hotelRooms}}</span>
                                                             <br/>
 
                                                         <span class="alert-icon"><i class="fa fa-person-booth"></i></span>
-                                                        <span class="alert-text"><strong>Hotel Room Type: </strong> {{$itineraryData->hotelRoomType}}</span>
+                                                        <span class="alert-text"><strong>Hotel Room Type: </strong> {{$quotationData->hotelRoomType}}</span>
                                                           | 
                                                         <span class="alert-icon"><i class="fa fa-utensils"></i></span>
-                                                        <span class="alert-text"><strong>Hotel Meal Type: </strong> {{$itineraryData->hotelMealType}}</span>
+                                                        <span class="alert-text"><strong>Hotel Meal Type: </strong> {{$quotationData->hotelMealType}}</span>
                                                             <br/>
 
                                                         <span class="alert-icon"><i class="fa fa-money"></i></span>
-                                                        <span class="alert-text"><strong>Hotel Price: </strong> {{$itineraryData->hotelPrice}}</span>
+                                                        <span class="alert-text"><strong>Hotel Price: </strong> {{$quotationData->hotelPrice}}</span>
                                                             <br/>
                                                     </div>
                                                             <br/>
 
-                                                    @elseif ($itineraryData->itinerarieTypeId == "2") <!-- Flight -->
+                                                    @elseif ($quotationData->quotationTypeId == "2") <!-- Flight -->
                                                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                                         <span class="alert-icon"><i class="fa fa-plane"></i></span>
-                                                        <span class="alert-text"><strong>Flight Type: </strong> {{$itineraryData->flightType}}</span>
+                                                        <span class="alert-text"><strong>Flight Type: </strong> {{$quotationData->flightType}}</span>
                                                             <br/>
                                                             
                                                         <span class="alert-icon"><i class="far fa-moon"></i></span>
-                                                        <span class="alert-text"><strong>From: </strong> {{$itineraryData->flightFrom}} </span> | 
-                                                        <span class="alert-text"><strong>To: </strong> {{$itineraryData->flightTo}} </span>
+                                                        <span class="alert-text"><strong>From: </strong> {{$quotationData->flightFrom}} </span> | 
+                                                        <span class="alert-text"><strong>To: </strong> {{$quotationData->flightTo}} </span>
                                                             <br/>
                                                         <span class="alert-icon"><i class="fa fa-money"></i></span>
-                                                        <span class="alert-text"><strong>Flight Price: </strong> {{$itineraryData->flightPrice}}</span>
+                                                        <span class="alert-text"><strong>Flight Price: </strong> {{$quotationData->flightPrice}}</span>
                                                             <br/>
                                                     </div>
                                                             <br/>
 
-                                                    @elseif ($itineraryData->itinerarieTypeId == "3") <!-- Custom -->
+                                                    @elseif ($quotationData->quotationTypeId == "3") <!-- Custom -->
 
                                                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                                         <span class="alert-icon"><i class="fa fa-align-justify"></i></span>
-                                                        <span class="alert-text"><strong>Custom Name and Location </strong> {{$itineraryData->customItemName}}, {{$itineraryData->customLocation}}</span>
+                                                        <span class="alert-text"><strong>Custom Name and Location </strong> {{$quotationData->customItemName}}, {{$quotationData->customLocation}}</span>
                                                             <br/>
                                                             
                                                         <span class="alert-icon"><i class="far fa-moon"></i></span>
-                                                        <span class="alert-text"><strong>Custom Item Type: </strong> {{$itineraryData->customItemType}} </span>
+                                                        <span class="alert-text"><strong>Custom Item Type: </strong> {{$quotationData->customItemType}} </span>
                                                             <br/>
                                                         <span class="alert-icon"><i class="fa fa-money"></i></span>
-                                                        <span class="alert-text"><strong>Custom Price: </strong> {{$itineraryData->customPrice}}</span>
+                                                        <span class="alert-text"><strong>Custom Price: </strong> {{$quotationData->customPrice}}</span>
                                                             <br/>
                                                     </div>
                                                             <br/>
 
-                                                    @elseif ($itineraryData->itinerarieTypeId == "4") <!-- Activities -->
+                                                    @elseif ($quotationData->quotationTypeId == "4") <!-- Activities -->
 
                                                         <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                                             <span class="alert-icon"><i class="fa fa-align-justify"></i></span>
-                                                            <span class="alert-text"><strong>Activity and Location </strong> {{$itineraryData->activitiesName}}, {{$itineraryData->activitiesAddress}}</span>
+                                                            <span class="alert-text"><strong>Activity and Location </strong> {{$quotationData->activitiesName}}, {{$quotationData->activitiesAddress}}</span>
                                                                 <br/>
                                                                 
                                                             <span class="alert-icon"><i class="far fa-moon"></i></span>
-                                                            <span class="alert-text"><strong>Activity Type: </strong> {{$itineraryData->activitiesActivityType}} </span>
+                                                            <span class="alert-text"><strong>Activity Type: </strong> {{$quotationData->activitiesActivityType}} </span>
                                                                 <br/>
                                                             <span class="alert-icon"><i class="fa fa-money"></i></span>
-                                                            <span class="alert-text"><strong>Custom Price: </strong> {{$itineraryData->activitiesPrice}}</span>
+                                                            <span class="alert-text"><strong>Custom Price: </strong> {{$quotationData->activitiesPrice}}</span>
                                                             <br/>
                                                     </div>
                                                             <br/>
                                                         
-                                                    @elseif ($itineraryData->itinerarieTypeId == "5") <!-- Transfer -->
+                                                    @elseif ($quotationData->quotationTypeId == "5") <!-- Transfer -->
 
                                                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                                                         <span class="alert-icon"><i class="fa fa-align-justify"></i></span>
-                                                        <span class="alert-text"><strong>Transfer Pick Up and Drop Location </strong> {{$itineraryData->transferPickupLocation}} <i class="fas fa-arrow-right"></i> {{$itineraryData->transfeDropLocationr}}</span>
+                                                        <span class="alert-text"><strong>Transfer Pick Up and Drop Location </strong> {{$quotationData->transferPickupLocation}} <i class="fas fa-arrow-right"></i> {{$quotationData->transfeDropLocationr}}</span>
                                                             <br/>
                                                             
                                                         <span class="alert-icon"><i class="far fa-moon"></i></span>
-                                                        <span class="alert-text"><strong>Transfer Vehicle Type: </strong> {{$itineraryData->transferVehicleType}} </span>
+                                                        <span class="alert-text"><strong>Transfer Vehicle Type: </strong> {{$quotationData->transferVehicleType}} </span>
                                                             <br/>
                                                         <span class="alert-icon"><i class="fa fa-money"></i></span>
-                                                        <span class="alert-text"><strong>Transfer Price: </strong> {{$itineraryData->transferVehicleType}}</span>
+                                                        <span class="alert-text"><strong>Transfer Price: </strong> {{$quotationData->transferVehicleType}}</span>
                                                         <br/>
                                                 </div>
                                                         <br/>
+                                                        
                                                     @endif
-                                                @endif
                                             @endforeach
                                         </div>
                                      </div>
 
                                      <br/>
-                                @endfor
 
                                 
                             </div>

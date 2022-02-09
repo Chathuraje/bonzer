@@ -1,7 +1,7 @@
-<form method="POST" action="{{ route('itinerary.store') }}">
+<form method="POST" action="{{ route('quotation.store') }}">
     @csrf <!-- {{ csrf_field() }} --> 
 
-  <input type="hidden" name="itinerarieId" id="input-id" class="form-control" value="<?php echo $_GET['id']; ?>">
+  <input type="hidden" name="quotationId" id="input-id" class="form-control" value="<?php echo $_GET['id']; ?>">
     <!-- Address -->
     <h6 class="heading-small text-muted mb-4">Add Hotel</h6>
     <div class="pl-lg-4">
@@ -22,7 +22,7 @@
           <div class="col-lg-2">
               <div class="form-group">
                   <label class="form-control-label" for="input-itinarary-date">Itinerary Day</label>
-                  <select name="hotelItinerarieDay" class="form-control" id="input-itinarary-date">
+                  <select name="hotelquotationDay" class="form-control" id="input-itinarary-date">
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>

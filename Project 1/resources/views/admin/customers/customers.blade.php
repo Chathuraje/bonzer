@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="/customer">Customer</a></li>
               <!--<li class="breadcrumb-item active" aria-current="page">Default</li>-->
             </ol>
@@ -40,10 +40,7 @@
                   <h3 class="mb-0 text-white">All Customer</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Filters</a>
                   <a href="/customer/create" class="btn btn-sm btn-primary text-white">Add a new Customer</a>
-                  <a href="#!" class="btn btn-sm btn-primary text-white">Export</a>
-                  <a href="" class="btn btn-sm btn-primary text-white">Import</a>
                 </div>
               </div>
             </div>

@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="/customer">Customer</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="/customer/{{$customer->id}}/edit">Edit Customer</a></li>
             </ol>
@@ -40,7 +40,7 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <a href="#!" class="btn btn-sm btn-primary">Clear</a>
+                        <!-- <a href="#!" class="btn btn-sm btn-primary">Clear</a>-->
                       </div>
                     </div>
                   </div>
@@ -215,7 +215,7 @@
                       <div class="pl-lg-4">
                         <div class="form-group">
                           <label class="form-control-label">Other Requirements</label>
-                          <textarea name="others" rows="4" class="form-control" placeholder="A few words about ..." value="{{$customer->others}}" ></textarea>
+                          <textarea name="others" rows="4" class="form-control" placeholder="A few words about ..." >{{$customer->others}}</textarea>
                         </div>
                       </div>
                   </div>

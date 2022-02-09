@@ -9,15 +9,15 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item"><a href="{{ route('quotation') }}">Quotation</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('addnewquotation') }}"> Add a New Quotation</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/quotation">Quotation</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/quotation/create"> Edit Quotation</a></li>
             </ol>
           </nav>
         </div>
         <div class="col-lg-6 col-5 text-right">
 
-          <h6 class="h2 text-white d-inline-block mb-0">Add a New Quotation</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">Edit Quotation</h6>
         </div>
       </div>
       <!-- Card stats -->
@@ -45,40 +45,55 @@
                     </div>
                   </div>
                   
-                  <form>
+                  <form method="POST" action="{{route('quotation.update', $quotations->id) }}"">
+                    @csrf <!-- {{ csrf_field() }} --> 
+                    @method('PUT')
+
+                  <input type="hidden" name="customerId" id="input-id" class="form-control" value="{{$quotations->quotations}}">
+                      @if (count($errors) > 0)
+                          <div class = "alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                          </div>
+                      @endif
                   <div class="card-body">
                       <h6 class="heading-small text-muted mb-4">Customer Details</h6>
                       <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="form-group">
-                                  <label class="form-control-label" for="input-email">Customer * (e.g. Firstname Lastname)</label>
-                                  <input type="text" id="input-first-name" class="form-control" placeholder="First name" value="Lucky">
-                                </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="inputcustomername">Customer * (e.g. Firstname Lastname)</label>
+                                <select class="form-control" name="customerName" id="inputcustomername" required readonly>
+                                  <option value="Select Customer Name">{{ $quotations->firstName . " " . $quotations->lastName }}</option>
+                                </select>
+                              </div>
                             </div>
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="form-control-label" for="input-first-name">Email *</label>
-                              <input type="email" id="input-email" class="form-control" placeholder="jesse@example.com">
+                              <label class="form-control-label" for="input-email">Email *</label>
+                              <input type="email" name="email" id="input-email" value="{{$quotations->email}}" class="form-control" placeholder="name@example.com" readonly>
                             </div>
                           </div>
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="form-control-label" for="input-last-name">Contact Phone *</label>
-                              <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="Jesse">
+                              <label class="form-control-label" for="input-contact-no">Contact Phone *</label>
+                              <input type="text" name="contactNumber" id="input-contact-no" value="{{$quotations->mobileNumber}}" class="form-control" placeholder="Contact Phone" readonly>
                             </div>
                           </div>
                         </div>
                       </div>
                       <hr class="my-4" />
                       <!-- Address -->
-                      <h6 class="heading-small text-muted mb-4">Itinerary Details</h6>
+                      <h6 class="heading-small text-muted mb-4">Quotation Details</h6>
                       <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                  <label class="form-control-label" for="input-country">Quotation Title / Details*</label>
-                                  <input type="text" id="input-country" class="form-control" placeholder="Country" value="United States">
+                                  <label class="form-control-label" for="input-title">Quotation Title / Details*</label>
+                                  <input type="text" id="input-title" name="title" value="{{$quotations->title}}" class="form-control" placeholder="Quotation Title / Details" required>
                                 </div>
                             </div>
                       </div>
@@ -91,7 +106,7 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <button type="submit" class="btn btn-md btn-primary">Add Quotation</button>
+                        <button type="submit" name="submitValue" value="Update" class="btn btn-md btn-primary">Update Quotation</button>
                       </div>
                     </div>
                   </div>

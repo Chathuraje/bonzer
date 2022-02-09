@@ -9,7 +9,7 @@
         <div class="col-lg-6 col-7">
           <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
             <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="/dashboard"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="/inquiry">Inquiry</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="/inquiry/{{ $inquiry->id }}/edit"> Edit New Inquiry</a></li>
             </ol>
@@ -17,7 +17,7 @@
         </div>
         <div class="col-lg-6 col-5 text-right">
 
-          <h6 class="h2 text-white d-inline-block mb-0">Add a New Inquiry</h6>
+          <h6 class="h2 text-white d-inline-block mb-0">Edit Inquiry</h6>
         </div>
       </div>
       <!-- Card stats -->
@@ -223,7 +223,7 @@
                       <div class="col-8">
                       </div>
                       <div class="col-4 text-right">
-                        <button type="submit" class="btn btn-md btn-primary">Update Inquiry</button>
+                        <button type="submit" class="btn btn-md btn-primary" name="submitValue" value="Update">Update Inquiry</button>
                       </div>
                     </div>
                   </div>

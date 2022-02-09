@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inquiry;
+use App\Models\Customer;
 
 class inquiryController extends Controller
 {
@@ -25,7 +26,8 @@ class inquiryController extends Controller
      */
     public function create()
     {
-        return view('admin.inquiry.addnewinquiry');
+        $customers = Customer::all("id", "firstName", "lastName", "email", "mobileNumber");
+        return view('admin.inquiry.addnewinquiry', compact('customers'));
     }
 
     /**
@@ -36,6 +38,29 @@ class inquiryController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Form validation
+        $this->validate($request, [
+            'customerId' => 'required',
+            'customerName' => 'required',
+            'email' => 'required|email',
+            'inquiryTitle'=>'required',
+            'inquiryType'=>'required',
+            'inquirySource'=>'required',
+            'tripType'=>'required',
+            'bookkingForSource' => 'required',
+            'startDate'=>'required',
+            'followupDate'=>'required',
+            'adults'=>'required',
+            'child'=>'required',
+            'infants'=>'required',
+            'budget'=>'required',
+            'status'=>'required'
+        ],
+        [
+            'email.required' => 'You have to choose the Customer First'
+        ]);
+        
         $inquiry = new Inquiry();
 
         $inquiry->customerId = $request->customerId;
